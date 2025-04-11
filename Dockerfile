@@ -23,8 +23,25 @@ RUN apt-get update && apt-get install -y \
     parallel \
     wget \
     zlib1g-dev \
+    pkg-config \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# -------------------------------------------------------------------
+# libdeflate 1.23 (release date: 2024-12-16)
+ENV LIBDEFLATE_VERSION=1.23
+ENV LIBDEFLATE=${SOFT}/libdeflate-${LIBDEFLATE_VERSION}
+ENV PATH="${LIBDEFLATE}/bin:${PATH}"
+
+RUN wget https://github.com/ebiggers/libdeflate/archive/refs/tags/v${LIBDEFLATE_VERSION}.tar.gz \
+    && tar -xzf v${LIBDEFLATE_VERSION}.tar.gz \
+    && cd libdeflate-${LIBDEFLATE_VERSION} \
+    && mkdir build && cd build \
+    && cmake -DCMAKE_INSTALL_PREFIX=${LIBDEFLATE} .. \
+    && make -j$(nproc) \
+    && make install \
+    && cd ../.. \
+    && rm -rf libdeflate-${LIBDEFLATE_VERSION} v${LIBDEFLATE_VERSION}.tar.gz
 
 # -------------------------------------------------------------------
 # HTSlib 1.21 (release date: 2024-09-12)
@@ -76,17 +93,18 @@ RUN wget https://github.com/samtools/bcftools/releases/download/${BCFTOOLS_VERSI
     && rm -rf bcftools-${BCFTOOLS_VERSION} bcftools-${BCFTOOLS_VERSION}.tar.bz2
 
 # -------------------------------------------------------------------
-# libdeflate 1.23 (release date: 2024-12-16)
-ENV LIBDEFLATE_VERSION=1.23
-ENV LIBDEFLATE=${SOFT}/libdeflate-${LIBDEFLATE_VERSION}
-ENV PATH="${LIBDEFLATE}/bin:${PATH}"
+# VCFtools 0.1.16 (release date: 2018-08-02)
+ENV VCFTOOLS_VERSION=0.1.16
+ENV VCFTOOLS=${SOFT}/vcftools-${VCFTOOLS_VERSION}
+ENV PATH="${VCFTOOLS}/bin:${PATH}"
+ENV VCFTOOLS="${VCFTOOLS}/bin/vcftools" 
 
-RUN wget https://github.com/ebiggers/libdeflate/archive/refs/tags/v${LIBDEFLATE_VERSION}.tar.gz \
-    && tar -xzf v${LIBDEFLATE_VERSION}.tar.gz \
-    && cd libdeflate-${LIBDEFLATE_VERSION} \
-    && mkdir build && cd build \
-    && cmake -DCMAKE_INSTALL_PREFIX=${LIBDEFLATE} .. \
+RUN wget https://github.com/vcftools/vcftools/releases/download/v${VCFTOOLS_VERSION}/vcftools-${VCFTOOLS_VERSION}.tar.gz \
+    && tar -xzf vcftools-${VCFTOOLS_VERSION}.tar.gz \
+    && cd vcftools-${VCFTOOLS_VERSION} \
+    && ./autogen.sh \
+    && ./configure --prefix=${SOFT}/vcftools-${VCFTOOLS_VERSION} \
     && make -j$(nproc) \
     && make install \
-    && cd ../.. \
-    && rm -rf libdeflate-${LIBDEFLATE_VERSION} v${LIBDEFLATE_VERSION}.tar.gz
+    && cd .. \
+    && rm -rf vcftools-${VCFTOOLS_VERSION} vcftools-${VCFTOOLS_VERSION}.tar.gz
