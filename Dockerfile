@@ -36,5 +36,16 @@ RUN apt-get update && apt-get install -y \
     g++ \
     libncurses5-dev \
     libncursesw5-dev \
-    parallel \
+    cmake \
     && apt-get clean
+
+# Install libdeflate 
+RUN wget https://github.com/ebiggers/libdeflate/archive/refs/tags/v${LIBDEFLATE_VERSION}.tar.gz && \
+    tar -vxzf v${LIBDEFLATE_VERSION}.tar.gz && \
+    cd libdeflate-${LIBDEFLATE_VERSION} && \
+    mkdir build && cd build && \
+    cmake -DCMAKE_INSTALL_PREFIX=$SOFT/libdeflate-${LIBDEFLATE_VERSION} .. && \
+    make -j$(nproc) && \
+    make install && \
+    cd ../.. && \
+    rm -rf libdeflate-${LIBDEFLATE_VERSION} v${LIBDEFLATE_VERSION}.tar.gz
