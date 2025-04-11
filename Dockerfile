@@ -15,7 +15,7 @@ ENV LIBDEFLATE_VERSION=1.23
 # Version from 02.08.2018
 ENV VCFTOOLS_VERSION=1.23
 
-# Path for tools
+# Directory for tools
 ENV SOFT=/soft
 
 WORKDIR /project
@@ -49,3 +49,36 @@ RUN wget https://github.com/ebiggers/libdeflate/archive/refs/tags/v${LIBDEFLATE_
     make install && \
     cd ../.. && \
     rm -rf libdeflate-${LIBDEFLATE_VERSION} v${LIBDEFLATE_VERSION}.tar.gz
+
+# Install HTSlib from source
+RUN wget https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSION}/htslib-${HTSLIB_VERSION}.tar.bz2 && \
+    tar -vxjf htslib-${HTSLIB_VERSION}.tar.bz2 && \
+    cd htslib-${HTSLIB_VERSION} && \
+    ./configure --prefix=$SOFT/htslib-${HTSLIB_VERSION} --enable-libcurl --with-libcurl --enable-s3 --enable-gcs && \
+    make -j$(nproc) && \
+    make install && \
+    cd .. && \
+    rm -rf htslib-${HTSLIB_VERSION} htslib-${HTSLIB_VERSION}.tar.bz2
+
+# Install Samtools from source
+RUN wget https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2 && \
+    tar -vxjf samtools-${SAMTOOLS_VERSION}.tar.bz2 && \
+    cd samtools-${SAMTOOLS_VERSION} && \
+    ./configure --prefix=$SOFT/samtools-${SAMTOOLS_VERSION} --with-htslib=$SOFT/htslib-${HTSLIB_VERSION} && \
+    make -j$(nproc) && \
+    make install && \
+    cd .. && \
+    rm -rf samtools-${SAMTOOLS_VERSION} samtools-${SAMTOOLS_VERSION}.tar.bz2
+
+# Install bcftools from source
+RUN wget https://github.com/samtools/bcftools/releases/download/${BCFTOOLS_VERSION}/bcftools-${BCFTOOLS_VERSION}.tar.bz2 && \
+    tar -vxjf bcftools-${BCFTOOLS_VERSION}.tar.bz2 && \
+    cd bcftools-${BCFTOOLS_VERSION} && \
+    ./configure --prefix=$SOFT/bcftools-${BCFTOOLS_VERSION} --with-htslib=$SOFT/htslib-${HTSLIB_VERSION} && \
+    make -j$(nproc) && \
+    make install && \
+    cd .. && \
+    rm -rf bcftools-${BCFTOOLS_VERSION} bcftools-${BCFTOOLS_VERSION}.tar.bz2
+
+# Add tools to PATH
+ENV PATH="${SOFT}/htslib-${HTSLIB_VERSION}/bin:${SOFT}/samtools-${SAMTOOLS_VERSION}/bin:${SOFT}/bcftools-${BCFTOOLS_VERSION}/bin:${SOFT}/libdeflate-${LIBDEFLATE_VERSION}/bin:${PATH}"
