@@ -4,8 +4,15 @@ FROM ubuntu:22.04
 ENV SOFT=/soft
 RUN mkdir -p ${SOFT}
 
+# Set environment variables to suppress interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
 # System packages installation (single layer for base dependencies)
 RUN apt-get update && apt-get install -y \
+    gpg-agent \
+    software-properties-common \
+    gnupg2 \
+    dirmngr \
     autoconf \
     automake \
     bzip2 \
@@ -108,3 +115,25 @@ RUN wget https://github.com/vcftools/vcftools/releases/download/v${VCFTOOLS_VERS
     && make install \
     && cd .. \
     && rm -rf vcftools-${VCFTOOLS_VERSION} vcftools-${VCFTOOLS_VERSION}.tar.gz
+
+
+# Install Python 3.9 and set as default
+RUN  add-apt-repository -y ppa:deadsnakes/ppa && \
+    apt-get install -y --no-install-recommends \
+    python3.9 \
+    python3.9-dev \
+    python3.9-distutils \
+    python3-pip && \
+    ln -sf /usr/bin/python3.9 /usr/bin/python && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install packages
+RUN python -m pip install --no-cache-dir \
+    pandas==2.2.3 \
+    pysam==0.23.0
+
+WORKDIR /project
+
+COPY main.py graf_snps_to_vcf/data/FP_SNPs_10k_GB38_twoAllelsFormat.tsv .
+
+ENTRYPOINT ["bash"]
