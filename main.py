@@ -427,14 +427,26 @@ def process_chromosome(args):
                 allele1 = str(row["allele1"]).upper()
                 allele2 = str(row["allele2"]).upper()
 
+                # Function to get reverse complement
+                def reverse_complement(base):
+                    complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C', 'N': 'N'}
+                    return ''.join([complement.get(b, b) for b in base[::-1]])
+
+                # Check both original and reverse complement
                 if allele1 == ref_base:
                     ref_allele = allele1
                     alt_allele = allele2
                 elif allele2 == ref_base:
                     ref_allele = allele2
                     alt_allele = allele1
+                elif reverse_complement(allele1) == ref_base:
+                    ref_allele = reverse_complement(allele1)
+                    alt_allele = reverse_complement(allele2)
+                elif reverse_complement(allele2) == ref_base:
+                    ref_allele = reverse_complement(allele2)
+                    alt_allele = reverse_complement(allele1)
                 else:
-                    logger.warning(f"Neither allele matches reference at {chrom}:{pos}")
+                    logger.warning(f"Neither allele matches reference (including reverse complement) at {chrom}:{pos}")
                     skipped += 1
                     continue
 
