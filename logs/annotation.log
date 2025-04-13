@@ -1,0 +1,63 @@
+2025-04-13 17:05:20 - main - INFO - Starting variant annotation (logging to ./logs/annotation.log)
+2025-04-13 17:05:20 - main - INFO - Starting parallel variant annotation
+2025-04-13 17:05:20 - main - INFO - Header validation passed
+2025-04-13 17:05:20 - main - INFO - Found 22 chromosomes to process
+2025-04-13 17:05:20 - main - INFO - Starting 32 parallel processes
+2025-04-13 17:05:21 - chr1 - INFO - Started processing chromosome chr1
+2025-04-13 17:05:21 - chr2 - INFO - Started processing chromosome chr2
+2025-04-13 17:05:21 - chr3 - INFO - Started processing chromosome chr3
+2025-04-13 17:05:21 - chr4 - INFO - Started processing chromosome chr4
+2025-04-13 17:05:21 - chr5 - INFO - Started processing chromosome chr5
+2025-04-13 17:05:21 - chr6 - INFO - Started processing chromosome chr6
+2025-04-13 17:05:21 - chr7 - INFO - Started processing chromosome chr7
+2025-04-13 17:05:21 - chr8 - INFO - Started processing chromosome chr8
+2025-04-13 17:05:21 - chr9 - INFO - Started processing chromosome chr9
+2025-04-13 17:05:21 - chr10 - INFO - Started processing chromosome chr10
+2025-04-13 17:05:21 - chr11 - INFO - Started processing chromosome chr11
+2025-04-13 17:05:21 - chr12 - INFO - Started processing chromosome chr12
+2025-04-13 17:05:21 - chr14 - INFO - Started processing chromosome chr14
+2025-04-13 17:05:21 - chr13 - INFO - Started processing chromosome chr13
+2025-04-13 17:05:21 - chr16 - INFO - Started processing chromosome chr16
+2025-04-13 17:05:21 - chr15 - INFO - Started processing chromosome chr15
+2025-04-13 17:05:21 - chr18 - INFO - Started processing chromosome chr18
+2025-04-13 17:05:21 - chr19 - INFO - Started processing chromosome chr19
+2025-04-13 17:05:21 - chr20 - INFO - Started processing chromosome chr20
+2025-04-13 17:05:21 - chr21 - INFO - Started processing chromosome chr21
+2025-04-13 17:05:21 - chr22 - INFO - Started processing chromosome chr22
+2025-04-13 17:05:21 - chr17 - INFO - Started processing chromosome chr17
+2025-04-13 17:05:21 - chr15 - WARNING - Neither allele matches reference at chr15:22907410
+2025-04-13 17:05:21 - chr15 - WARNING - Neither allele matches reference at chr15:22832212
+2025-04-13 17:05:21 - chr11 - WARNING - Neither allele matches reference at chr11:54678670
+2025-04-13 17:05:21 - chr16 - INFO - Finished processing chr16 in 0.07s - Processed: 305, Skipped: 0
+2025-04-13 17:05:21 - chr14 - INFO - Finished processing chr14 in 0.07s - Processed: 355, Skipped: 0
+2025-04-13 17:05:21 - chr15 - INFO - Finished processing chr15 in 0.08s - Processed: 306, Skipped: 2
+2025-04-13 17:05:21 - chr13 - INFO - Finished processing chr13 in 0.08s - Processed: 385, Skipped: 0
+2025-04-13 17:05:21 - chr22 - INFO - Finished processing chr22 in 0.07s - Processed: 138, Skipped: 0
+2025-04-13 17:05:21 - chr21 - INFO - Finished processing chr21 in 0.07s - Processed: 166, Skipped: 0
+2025-04-13 17:05:21 - chr11 - INFO - Finished processing chr11 in 0.10s - Processed: 513, Skipped: 1
+2025-04-13 17:05:21 - chr7 - INFO - Finished processing chr7 in 0.10s - Processed: 526, Skipped: 0
+2025-04-13 17:05:21 - chr10 - WARNING - Neither allele matches reference at chr10:47420743
+2025-04-13 17:05:21 - chr9 - INFO - Finished processing chr9 in 0.10s - Processed: 464, Skipped: 0
+2025-04-13 17:05:21 - chr10 - WARNING - Neither allele matches reference at chr10:47320207
+2025-04-13 17:05:21 - chr8 - INFO - Finished processing chr8 in 0.10s - Processed: 551, Skipped: 0
+2025-04-13 17:05:21 - chr20 - INFO - Finished processing chr20 in 0.09s - Processed: 232, Skipped: 0
+2025-04-13 17:05:21 - chr12 - INFO - Finished processing chr12 in 0.11s - Processed: 494, Skipped: 0
+2025-04-13 17:05:21 - chr19 - INFO - Finished processing chr19 in 0.09s - Processed: 200, Skipped: 0
+2025-04-13 17:05:21 - chr6 - INFO - Finished processing chr6 in 0.11s - Processed: 604, Skipped: 0
+2025-04-13 17:05:21 - chr10 - WARNING - Neither allele matches reference at chr10:47268342
+2025-04-13 17:05:21 - chr10 - WARNING - Neither allele matches reference at chr10:47099482
+2025-04-13 17:05:21 - chr10 - WARNING - Neither allele matches reference at chr10:46031829
+2025-04-13 17:05:21 - chr1 - WARNING - Neither allele matches reference at chr1:145899155
+2025-04-13 17:05:21 - chr17 - INFO - Finished processing chr17 in 0.09s - Processed: 291, Skipped: 0
+2025-04-13 17:05:21 - chr18 - INFO - Finished processing chr18 in 0.10s - Processed: 300, Skipped: 0
+2025-04-13 17:05:21 - chr4 - INFO - Finished processing chr4 in 0.13s - Processed: 602, Skipped: 0
+2025-04-13 17:05:21 - chr3 - INFO - Finished processing chr3 in 0.14s - Processed: 701, Skipped: 0
+2025-04-13 17:05:21 - chr2 - INFO - Finished processing chr2 in 0.14s - Processed: 864, Skipped: 0
+2025-04-13 17:05:21 - chr5 - INFO - Finished processing chr5 in 0.14s - Processed: 656, Skipped: 0
+2025-04-13 17:05:21 - chr1 - INFO - Finished processing chr1 in 0.15s - Processed: 809, Skipped: 1
+2025-04-13 17:05:21 - chr10 - INFO - Finished processing chr10 in 0.15s - Processed: 529, Skipped: 5
+2025-04-13 17:05:21 - main - INFO - Saved sorted results to /home/m_trofimov/my_misc/csp/graf_snps_to_vcf/graf_snps_to_vcf/annotated_variants.txt
+2025-04-13 17:05:21 - main - INFO - Processing complete
+2025-04-13 17:05:21 - main - INFO -   Total variants processed: 9991
+2025-04-13 17:05:21 - main - INFO -   Total variants skipped: 9
+2025-04-13 17:05:21 - main - INFO -   Time elapsed: 0.28 seconds
