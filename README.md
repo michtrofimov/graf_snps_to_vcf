@@ -8,7 +8,7 @@ A pipeline for pre-processing GRAF (https://www.ncbi.nlm.nih.gov/projects/gap/cg
 
 ```
 git clone git@github.com:michtrofimov/graf_snps_to_vcf.git
-cd ..
+cd graf_snps_to_vcf
 ```
 
 2. Build docker image
