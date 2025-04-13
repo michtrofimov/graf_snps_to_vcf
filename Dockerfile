@@ -134,6 +134,6 @@ RUN python -m pip install --no-cache-dir \
 
 WORKDIR /project
 
-COPY main.py graf_snps_to_vcf/data/FP_SNPs_10k_GB38_twoAllelsFormat.tsv .
+COPY main.py data/FP_SNPs_10k_GB38_twoAllelsFormat.tsv .
 
 ENTRYPOINT ["bash"]
